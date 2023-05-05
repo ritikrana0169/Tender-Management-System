@@ -1,4 +1,4 @@
-package com.tender.dto;
+package com.tender.entity;
 
 import java.util.ArrayList;
 import java.util.List;

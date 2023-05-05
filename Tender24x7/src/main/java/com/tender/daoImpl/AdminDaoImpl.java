@@ -5,16 +5,16 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.tender.dao.AdminDao;
-import com.tender.dto.Admin;
-import com.tender.dto.Tender;
-import com.tender.dto.Vendor;
+import com.tender.entity.Admin;
+import com.tender.entity.Tender;
+import com.tender.entity.Vendor;
 
 public class AdminDaoImpl implements AdminDao{
 
 	@Override
 	public List<Vendor> getAllVendors() {
 		Vendor v1=new Vendor();
-		v1.setVendorName("Abhi");
+		v1.setVendorCompanyName("abhiroop");
 		Vendor v2=new Vendor();
 		List<Vendor> vendorList=new ArrayList<>();
 		vendorList.add(v1);
@@ -36,6 +36,7 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public List<Tender> getAllTenders() {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
