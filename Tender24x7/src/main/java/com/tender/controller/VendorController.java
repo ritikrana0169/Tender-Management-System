@@ -2,17 +2,19 @@ package com.tender.controller;
 
 import java.util.Scanner;
 
+import com.tender.entity.Vendor;
+
 public class VendorController {
-	public void vendorMethod(Scanner sc) {
-		System.out.println("Administrator Pannel");
+	public void vendorMethod(Scanner sc,Vendor vendor) {
+		System.out.println("Vendor Pannel\n\n");
 		int i=0;
 		while(i!=7) {
-			System.out.println("1: Login with his account");
-			System.out.println("2: Update his account details and change password");
-			System.out.println("3: View all the current Tenders");
-			System.out.println("4: Place a Bid against a Tender");
-			System.out.println("5: View his own Bid History with bid status");
-			System.out.println("6: Search for a tender by tender id or date range");
+			System.out.println("Company Name-> "+vendor.getVendorCompanyName());
+			System.out.println("1: Update his account details and change password");
+			System.out.println("2: View all the current Tenders");
+			System.out.println("3: Place a Bid against a Tender");
+			System.out.println("4: View his own Bid History with bid status");
+			System.out.println("5: Search for a tender by tender id or date range");
 			System.out.println("7: Logout");
 			
 			i=sc.nextInt();

@@ -4,13 +4,22 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.tender.daoImpl.AdminDaoImpl;
-import com.tender.dto.Admin;
-import com.tender.dto.Vendor;
+import com.tender.daoImpl.TenderDaoImpl;
+import com.tender.daoImpl.VendorDaoImpl;
+import com.tender.entity.Admin;
+import com.tender.entity.Tender;
+import com.tender.entity.Vendor;
+import com.tender.service.TenderService;
+import com.tender.service.VendorService;
+
 
 public class AdminController {
 	Admin admin=new Admin();
 	AdminDaoImpl adminDao=new AdminDaoImpl();
-	
+	TenderService tenderService=new TenderService();
+	VendorService vendorService=new VendorService();
+	TenderDaoImpl tenderDaoImpl=new TenderDaoImpl();
+	VendorDaoImpl vendorDaoImpl=new VendorDaoImpl();
 	public void administratorMethod(Scanner sc) throws InterruptedException {
 		System.out.println("Administrator Pannel");
 		int i=0;
@@ -25,19 +34,22 @@ public class AdminController {
 			i=sc.nextInt();
 			switch(i) {
 			case 1:
+				List<Vendor> vList=vendorDaoImpl.getAllVendors();
+				vendorService.printAllVendors(vList);
 				
-				admin.setVendorList(adminDao.getAllVendors());
-				printAllVendors(admin.getVendorList());
-				Thread.sleep(4000);
+				Thread.sleep(2000);
 //				adminViewAllVendors();
 				break;
 			case 2:
 //				adminCreateNewTenders();
-				adminDao.createTender(sc);
-				Thread.sleep(4000);
+				Tender tender=tenderService.createNewTender(sc);
+				tenderDaoImpl.saveTender(tender);
+				Thread.sleep(2000);
 				break;
 			case 3:
 //				adminViewAllTenders();
+				List<Tender> tList=tenderDaoImpl.getAllTenders();
+				tenderService.printAllTenders(tList);
 				break;
 			case 4:
 //				adminViewAllBidsOfaTender();

@@ -1,13 +1,14 @@
 package com.tender.MainUi;
 
 import java.util.Scanner;
-
 import com.tender.controller.AdminController;
 import com.tender.controller.LoginController;
-import com.tender.controller.VendorController;
+import com.tender.utils.DbUtils.GetConnection;
+import jakarta.persistence.EntityManagerFactory;
 
 public class MainUi {
 public static void main(String[] args) {
+	EntityManagerFactory emf=GetConnection.getEmf();
 	Scanner sc=new Scanner(System.in);
 	
 	try {
@@ -17,7 +18,7 @@ public static void main(String[] args) {
 			System.out.println("2: Vendor");
 			System.out.println("9: Exit");
 			i=sc.nextInt();
-			switch(i) {
+			switch(i){
 			case 1:
 				if(new LoginController().adminLogin(sc)) {
 					new AdminController().administratorMethod(sc);	
@@ -26,7 +27,7 @@ public static void main(String[] args) {
 				}
 				break;
 			case 2:
-				new VendorController().vendorMethod(sc);
+				new LoginController().signUpOrLoginMenu(sc);
 				
 				break;
 			case 9:
@@ -36,6 +37,7 @@ public static void main(String[] args) {
 		}		
 	} catch (Exception e) {
 		// TODO: handle exception
+		System.out.println(e);
 		System.out.println("Program Ended");
 	}
 

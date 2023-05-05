@@ -3,8 +3,8 @@ package com.tender.dao;
 import java.util.List;
 import java.util.Scanner;
 
-import com.tender.dto.Tender;
-import com.tender.dto.Vendor;
+import com.tender.entity.Tender;
+import com.tender.entity.Vendor;
 
 public interface AdminDao {
 
