@@ -52,10 +52,14 @@ public class AdminController {
 				tenderService.printAllTenders(tList);
 				break;
 			case 4:
-//				adminViewAllBidsOfaTender();
+				List<Tender> tOpenList=tenderDaoImpl.getAllOpenTenders();
+				tenderService.printAllTenders(tOpenList);
+				int tenderId=tenderService.scanTenderId(sc);
+				Tender tenderObject=tenderDaoImpl.getTenderByTenderId(tenderId);
+				tenderService.printTenderBidHistory(tenderObject.getBidByList());
 				break;
 			case 5:
-//				adminAssignTender();
+				tenderService.assignVendor(sc);
 				break;
 			case 7:
 				System.out.println("Admin Logged Out");

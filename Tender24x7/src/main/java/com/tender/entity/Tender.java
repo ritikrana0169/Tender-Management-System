@@ -28,9 +28,50 @@ public class Tender {
 	@JoinColumn(name ="fkVendorId")
 	private Vendor vendor;
 
+public Vendor getVendor() {
+		return vendor;
+	}
+
+
+
+
+	public void setVendor(Vendor vendor) {
+		this.vendor = vendor;
+	}
+
+
+
+
 public Tender() {
 	super();
 	// TODO Auto-generated constructor stub
+}
+
+
+
+
+public List<Vendor> getBidByList() {
+	return bidByList;
+}
+
+
+
+public void setBidByList(List<Vendor> bidByList) {
+	this.bidByList = bidByList;
+}
+
+
+
+
+public int getTenderId() {
+	return tenderId;
+}
+
+
+
+
+public void setTenderId(int tenderId) {
+	this.tenderId = tenderId;
 }
 
 
@@ -74,8 +115,8 @@ public void setTenderName(String tenderName) {
 
 @Override
 public String toString() {
-	return "Tender [tenderId=" + tenderId + ", tenderName=" + tenderName + ", takeOverBid=" + takeOverBid
-			+ ", tenderClosingDate=" + tenderClosingDate + ", vendor=" + vendor.getVendorCompanyName() + "]";
+	return "\nsTenderId : " + tenderId + "\nTenderName : " + tenderName + "\nTakeOverBid : " + takeOverBid
+			+ "\nTenderClosingDate : " + tenderClosingDate + "\nVendor : " + vendor.getVendorCompanyName() + "\n----------";
 }
 
 
