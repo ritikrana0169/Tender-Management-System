@@ -16,49 +16,31 @@ The system has two types of users:
 
 Administrator: 
 
-1.Can login
-
-2.view all vendors
-
-3.create new tenders
-
-4.view all tenders
-
-5.view all bids of a tender
-
-6.and assign a tender to a vendor.
-
-
+1.Can login<br>
+2.view all vendors<br>
+3.create new tenders<br>
+4.view all tenders<br>
+5.view all bids of a tender<br>
+6.and assign a tender to a vendor.<br>
+<br>
 Vendor: 
 
-1.Can SignUp With New Account
-
-2.Can login
-
-3.update account details
-
-4.view all current tenders
-
-5.place bids
-
-6.view own bid history
-
-7.search for a tender by tender id.
-
-
+1.Can SignUp With New Account<br>
+2.Can login<br>
+3.update account details<br>
+4.view all current tenders<br>
+5.place bids<br>
+6.view own bid history<br>
+7.search for a tender by tender id.<br>
+<br>
 All above parts are working properly
 
-Installation:
-
-1: Clone the repository or download the zip file.
-
-2: Import the project into a Java IDE.
-
-3: Setup a database (MySQL) and configure the database connection in the persistence.xml file located in the src/main/resources/META-INF folder.
-
-
-Technologies Used:
-
+Installation:<br>
+1: Clone the repository or download the zip file.<br>
+2: Import the project into a Java IDE.<br>
+3: Setup a database (MySQL) and configure the database connection in the persistence.xml file located in the src/main/resources/META-INF folder.<br>
+<br>
+Technologies Used:<br>
 1: Java<br>
 2: Hibernate ORM Framework<br>
 3: MySQL Database<br>
@@ -66,15 +48,15 @@ Technologies Used:
 
 Configuration:
 
-The database connection can be configured in the persistence.xml file located in the src/main/resources/META-INF  folder.
-The [username=>admin and password=>password] for the admin account are fixed and hardcoded in the code.
+The database connection can be configured in the persistence.xml file located in the src/main/resources/META-INF  folder.<br>
+The [username=>admin and password=>password] for the admin account are fixed and hardcoded in the code.<br>
 
-Usage:
+Usage:<br>
 
-1: Clone the repository or download the zip file.
-2: Import the project into a Java IDE.
-3: Login as either the Administrator or Vendor.
-4: Perform the desired actions based on the user type.
+1: Clone the repository or download the zip file.<br>
+2: Import the project into a Java IDE.<br>
+3: Login as either the Administrator or Vendor.<br>
+4: Perform the desired actions based on the user type.<br>
 
 Conclusion:
 
@@ -82,10 +64,10 @@ This Tender Management System provides a user-friendly interface for companies t
 
 ScreenShots->
 
-MySql->
-Database Name -> tenderCompany
+MySql-><br>
+Database Name -> tenderCompany<br>
 
-Tables Inside tenderCompany
+Tables Inside tenderCompany<br>
 
 ![tables](https://user-images.githubusercontent.com/99540875/236662358-a0ae66f8-26c3-4404-bf13-14a429055843.png)
 
