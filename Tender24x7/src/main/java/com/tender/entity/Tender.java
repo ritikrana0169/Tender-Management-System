@@ -19,8 +19,24 @@ public class Tender {
 	private String tenderName;
 	private int takeOverBid;
 	private Date tenderClosingDate;
+	private int tenderExpectedPrice;
 	
-	
+	public int getTenderExpectedPrice() {
+		return tenderExpectedPrice;
+	}
+	public void setTenderExpectedPrice(int tenderExpectedPrice) {
+		this.tenderExpectedPrice = tenderExpectedPrice;
+	}
+	public int getTakeOverBid() {
+		return takeOverBid;
+	}
+	public void setTakeOverBid(int takeOverBid) {
+		this.takeOverBid = takeOverBid;
+	}
+
+
+
+
 	@ManyToMany
 	@JoinTable(name="vendorBidsForTenders", joinColumns = {@JoinColumn(referencedColumnName = "tenderId")}, inverseJoinColumns = {@JoinColumn(referencedColumnName = "vendorId")})
     private List<Vendor> bidByList;
@@ -31,17 +47,9 @@ public class Tender {
 public Vendor getVendor() {
 		return vendor;
 	}
-
-
-
-
 	public void setVendor(Vendor vendor) {
 		this.vendor = vendor;
 	}
-
-
-
-
 public Tender() {
 	super();
 	// TODO Auto-generated constructor stub
@@ -77,12 +85,13 @@ public void setTenderId(int tenderId) {
 
 
 
-public Tender(String tenderName, int takeOverBid, Date tenderClosingDate, Vendor vendor) {
+public Tender(String tenderName, int takeOverBid, Date tenderClosingDate, Vendor vendor,int tenderExpectedPrice) {
 
 	this.tenderName = tenderName;
 	this.takeOverBid = takeOverBid;
 	this.tenderClosingDate = tenderClosingDate;
 	this.vendor = vendor;
+	this.tenderExpectedPrice=tenderExpectedPrice;
 }
 
 
@@ -115,8 +124,10 @@ public void setTenderName(String tenderName) {
 
 @Override
 public String toString() {
-	return "\nsTenderId : " + tenderId + "\nTenderName : " + tenderName + "\nTakeOverBid : " + takeOverBid
-			+ "\nTenderClosingDate : " + tenderClosingDate + "\nVendor : " + vendor.getVendorCompanyName() + "\n----------";
+	return"-------------------------------------------------------------------"+"\nTenderId : " + tenderId + 
+			"\nTenderName : " + tenderName + "\nTakeOverBid : " + takeOverBid
+			+ "\nTenderClosingDate : " + tenderClosingDate + "\nVendor : " + vendor.getVendorCompanyName()
+			+"\nMinimum Expected Budget: "+tenderExpectedPrice+ "\n----------";
 }
 
 

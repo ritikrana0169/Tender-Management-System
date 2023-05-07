@@ -16,11 +16,12 @@ public class Vendor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int vendorId;
     private String vendorCompanyName;
+    private String contactMailId;
+    private String CompanyCeoName;
     private String userName;
     private String userPasword;
     private int totalTenderTakeOver;
     private int experienceInYears;
-    
 
     @ManyToMany(mappedBy = "bidByList", cascade = CascadeType.ALL)
     private List<Tender> bidForList;
@@ -36,16 +37,43 @@ public Vendor() {
 
 
 
+public String getContactMailId() {
+	return contactMailId;
+}
 
+
+
+public void setContactMailId(String contactMailId) {
+	this.contactMailId = contactMailId;
+}
+
+
+public String getCompanyCeoName() {
+	return CompanyCeoName;
+}
+
+
+
+
+public void setCompanyCeoName(String companyCeoName) {
+	CompanyCeoName = companyCeoName;
+}
 
 
 @Override
 public String toString() {
-	return "Vendor [vendorId=" + vendorId + ", vendorCompanyName=" + vendorCompanyName + ", userName=" + userName
-			+ ", totalTenderTakeOver=" + totalTenderTakeOver + ", experienceInYears=" + experienceInYears + "]";
+	String str="-----------------xxxxxxxxxxxxxxxxxx----------------------\n| Vendor [ vendorId-> " + vendorId + ", vendorCompanyName-> "
++ vendorCompanyName + ", contactMailId-> "
+			+ contactMailId + ",\n| CompanyCeoName-> " + CompanyCeoName + ", userName-> " + userName + ", totalTenderTakeOver-> "
+			+ totalTenderTakeOver + ",\n| experienceInYears-> " + experienceInYears + ",\n| Assigned TenderList=";
+for(int i=0;i<tenderList.size();i++) {
+	str=str+"\n[Tender Id-> "+tenderList.get(i).getTenderId()+" Tender Name-> "+
+tenderList.get(i).getTenderName()+"\n| Tender TakeOver Price-> "+tenderList.get(i).getTakeOverBid()+"]\n| "
+		+ "\"---------------------------------------------------------------------\"";
 }
-
-
+	
+	return str;
+}
 
 
 
@@ -56,15 +84,30 @@ public int getVendorId() {
 
 
 
-public Vendor(String vendorCompanyName, String userName, String userPasword, int totalTenderTakeOver,
-		int experienceInYears) {
+
+
+public Vendor(String vendorCompanyName, String contactMailId, String companyCeoName, String userName,
+		String userPasword, int totalTenderTakeOver, int experienceInYears) {
 	super();
 	this.vendorCompanyName = vendorCompanyName;
+	this.contactMailId = contactMailId;
+	CompanyCeoName = companyCeoName;
 	this.userName = userName;
 	this.userPasword = userPasword;
 	this.totalTenderTakeOver = totalTenderTakeOver;
 	this.experienceInYears = experienceInYears;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 public void setVendorId(int vendorId) {
 	this.vendorId = vendorId;

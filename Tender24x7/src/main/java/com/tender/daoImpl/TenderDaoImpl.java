@@ -14,6 +14,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Query;
 
 public class TenderDaoImpl implements TenderDao{
+	BidDaoImpl bidDaoImpl=new BidDaoImpl();
 	@Override
 	public void saveTender(Tender td) {
 		EntityManagerFactory emf=GetConnection.getEmf();
@@ -69,22 +70,29 @@ public class TenderDaoImpl implements TenderDao{
 	public List<Tender> biddingForTender(Vendor vendor,Scanner sc) {
 		EntityManagerFactory emf=GetConnection.getEmf();
 		EntityManager em=emf.createEntityManager();
-		Query query=em.createQuery("Select t from Tender t where t.vendor.vendorId=-1");
-		List<Tender> tenderList=query.getResultList();
+		Query query=em.createQuery("Select t.tenderId from Tender t where t.vendor.vendorId=-1");
+		List<Integer> tenderIdList=query.getResultList();
 		List<Tender> customTender=new ArrayList<>();
-		for(int i=0;i<tenderList.size();i++) {
-			boolean isAvailable=false;
-			for(int j=0;j<tenderList.get(i).getBidByList().size();j++) {
-				
-				if(tenderList.get(i).getBidByList().get(j).getVendorId()==vendor.getVendorId()) {
-					
-					isAvailable=true;
-				}
-			}
-			if(!isAvailable) {
-				customTender.add(tenderList.get(i));
-			}
+		List<Integer> bidListByVendor=bidDaoImpl.getTenderIdListForVendor(vendor.getVendorId());
+		for(int i=0;i<bidListByVendor.size();i++) {
+			tenderIdList.remove(Integer.valueOf(bidListByVendor.get(i)));
 		}
+		for(int i=0;i<tenderIdList.size();i++) {
+			customTender.add(getTenderByTenderId(tenderIdList.get(i)));
+		}
+//		for(int i=0;i<tenderList.size();i++) {
+//			boolean isAvailable=false;
+//			for(int j=0;j<tenderList.get(i).getBidByList().size();j++) {
+//				
+//				if(tenderList.get(i).getBidByList().get(j).getVendorId()==vendor.getVendorId()) {
+//					
+//					isAvailable=true;
+//				}
+//			}
+//			if(!isAvailable) {
+//				customTender.add(tenderList.get(i));
+//			}
+//		}
 		return customTender;
 		
 	}

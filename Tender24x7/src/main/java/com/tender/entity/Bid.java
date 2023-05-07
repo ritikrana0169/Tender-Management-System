@@ -4,16 +4,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Bid {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 private int bidId;
-private Vendor byVendor;
-private Tender forTender;
+private int byVendorId;
+private int forTenderId;
 private int price;
 public int getBidId() {
 	return bidId;
@@ -21,17 +19,18 @@ public int getBidId() {
 public void setBidId(int bidId) {
 	this.bidId = bidId;
 }
-public Vendor getByVendor() {
-	return byVendor;
+
+public int getByVendorId() {
+	return byVendorId;
 }
-public void setByVendor(Vendor byVendor) {
-	this.byVendor = byVendor;
+public void setByVendorId(int byVendorId) {
+	this.byVendorId = byVendorId;
 }
-public Tender getForTender() {
-	return forTender;
+public int getForTenderId() {
+	return forTenderId;
 }
-public void setForTender(Tender forTender) {
-	this.forTender = forTender;
+public void setForTenderId(int forTenderId) {
+	this.forTenderId = forTenderId;
 }
 public int getPrice() {
 	return price;
@@ -43,15 +42,18 @@ public Bid() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-public Bid(Vendor byVendor, Tender forTender, int price) {
+public Bid(int bidId, int byVendorId, int forTenderId, int price) {
 	super();
-	this.byVendor = byVendor;
-	this.forTender = forTender;
+	this.bidId = bidId;
+	this.byVendorId = byVendorId;
+	this.forTenderId = forTenderId;
 	this.price = price;
 }
 @Override
 public String toString() {
-	return "Bid [bidId=" + bidId + ", byVendor=" + byVendor + ", forTender=" + forTender + ", price=" + price + "]";
+	return "Bid [bidId=" + bidId + ", byVendorId=" + byVendorId + ", forTenderId=" + forTenderId + ", price=" + price
+			+ "]";
 }
+
 
 }
