@@ -3,6 +3,7 @@ package com.tender.service;
 import java.util.List;
 import java.util.Scanner;
 
+import com.tender.daoImpl.BidDaoImpl;
 import com.tender.daoImpl.VendorDaoImpl;
 import com.tender.entity.Tender;
 import com.tender.entity.Vendor;
@@ -20,6 +21,9 @@ public class VendorService {
 			System.out.println("2: Update User-Password");
 			System.out.println("3: Update Total Tender TakeOver");
 			System.out.println("4: Update Total Experience");
+			System.out.println("5: Update Company Ceo Name");
+			System.out.println("6: Update Contact Email ID");
+			System.out.println("7: Save/Exit");
 			
 			i=sc.nextInt();
 			switch(i) {
@@ -38,6 +42,14 @@ public class VendorService {
 			case 4:
 				System.out.println("Enter Updated Total Experience");
 				vendor.setExperienceInYears(sc.nextInt());
+				break;
+			case 5:
+				System.out.println("Enter Updated Company Ceo Name");
+				vendor.setCompanyCeoName(sc.next());
+				break;
+			case 6:
+				System.out.println("Enter Updated Contact Email ID");
+				vendor.setContactMailId(sc.next());
 				break;
 			case 7:
 				System.out.println("Update Your Profile");
@@ -60,8 +72,13 @@ public class VendorService {
 public Vendor vendorSignUp(Scanner sc) {
 	System.out.println("Enter Company Name");
 	String companyName=sc.next();
+	System.out.println("Enter Contact Mail");
+	String contactMailId=sc.next();
+	System.out.println("Enter Company Ceo Name");
+	String companyCeoName=sc.next();
 	System.out.println("Enter User-Name");
 	String userName=sc.next();
+	
 	System.out.println("Enter User-Password");
 	String userPassword=sc.next();
 	System.out.println("Enter Total Tender TakeOver");
@@ -69,7 +86,7 @@ public Vendor vendorSignUp(Scanner sc) {
 	System.out.println("Enter Experience In Years");
 	int experienceYear=sc.nextInt();
 	
-	Vendor vendor=new Vendor(companyName,userName,userPassword,tenderTakeOver,experienceYear);
+	Vendor vendor=new Vendor(companyName,contactMailId,companyCeoName,userName,userPassword,tenderTakeOver,experienceYear);
 	return vendor;
 }
 public void printAllVendors(List<Vendor> vendorList) {
@@ -78,9 +95,12 @@ public void printAllVendors(List<Vendor> vendorList) {
 public void viewBidHistory(int id) {
 
 	Vendor vendor=vendorDaoImpl.getVendorById(id);
+	BidDaoImpl bidDaoImpl=new BidDaoImpl(); 
+	
 	for(int i=0;i<vendor.getBidForList().size();i++) {
 		Tender td=vendor.getBidForList().get(i);
-		System.out.println("Tender Id-> "+td.getTenderId()+" Tender Name"+td.getTenderName());
+		Integer price=bidDaoImpl.getBidPriceByTenderIdAndVendorId(td.getTenderId(),id);
+		System.out.println("Tender Id-> "+td.getTenderId()+" Tender Name-> "+td.getTenderName()+" Your Bid Price-> "+price);
 		if(td.getVendor().getVendorCompanyName().equals("open")) {
 			System.out.println("Tender Status-> Still Open");
 		}else {

@@ -9,6 +9,7 @@ import com.tender.daoImpl.VendorDaoImpl;
 import com.tender.entity.Admin;
 import com.tender.entity.Tender;
 import com.tender.entity.Vendor;
+import com.tender.exception.SomeThingWentWrongException;
 import com.tender.service.TenderService;
 import com.tender.service.VendorService;
 
@@ -21,7 +22,7 @@ public class AdminController {
 	TenderDaoImpl tenderDaoImpl=new TenderDaoImpl();
 	VendorDaoImpl vendorDaoImpl=new VendorDaoImpl();
 	public void administratorMethod(Scanner sc) throws InterruptedException {
-		System.out.println("Administrator Pannel");
+		System.out.println("\n\n-------Administrator Pannel--------------\n");
 		int i=0;
 		while(i!=7) {
 			System.out.println("1: View all the vendors");
@@ -36,7 +37,6 @@ public class AdminController {
 			case 1:
 				List<Vendor> vList=vendorDaoImpl.getAllVendors();
 				vendorService.printAllVendors(vList);
-				
 				Thread.sleep(2000);
 //				adminViewAllVendors();
 				break;
@@ -44,31 +44,41 @@ public class AdminController {
 //				adminCreateNewTenders();
 				Tender tender=tenderService.createNewTender(sc);
 				tenderDaoImpl.saveTender(tender);
+				System.out.println("Tender Created SuccessFull\n");
 				Thread.sleep(2000);
 				break;
 			case 3:
 //				adminViewAllTenders();
 				List<Tender> tList=tenderDaoImpl.getAllTenders();
 				tenderService.printAllTenders(tList);
+				Thread.sleep(2000);
 				break;
 			case 4:
 				List<Tender> tOpenList=tenderDaoImpl.getAllOpenTenders();
 				tenderService.printAllTenders(tOpenList);
 				int tenderId=tenderService.scanTenderId(sc);
 				Tender tenderObject=tenderDaoImpl.getTenderByTenderId(tenderId);
-				tenderService.printTenderBidHistory(tenderObject.getBidByList());
+				tenderService.printTenderBidHistory(tenderObject.getBidByList(),tenderId);
+				Thread.sleep(2000);
 				break;
 			case 5:
-				tenderService.assignVendor(sc);
+				try {
+					tenderService.assignVendor(sc);
+				} catch (SomeThingWentWrongException e) {
+					// TODO Auto-generated catch block
+					e.getMessage();
+				}
+				Thread.sleep(2000);
 				break;
 			case 7:
 				System.out.println("Admin Logged Out");
+				Thread.sleep(2000);
 				break;
 			}
 		}
 	}
 	private void printAllVendors(List<Vendor> vendorList) {
-		pattern();
+	pattern();
 	vendorList.forEach(s->System.out.println("\n"+s.toString()+"\n"));
 	pattern();
 	}

@@ -8,7 +8,7 @@ xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml
 	<persistence-unit name="tenderConnect">
 		<properties>
 			<property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-			<property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tenderCompany" />
+			<property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tendercompany" />
 			<property name="jakarta.persistence.jdbc.user" value="root" />
 			<property name="jakarta.persistence.jdbc.password" value="Ritik@123" />
       <property name="hibernate.show_sql"  value="false"/>
