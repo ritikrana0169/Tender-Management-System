@@ -15,35 +15,53 @@ Project Logo
 The system has two types of users:
 
 Administrator: 
+
 1.Can login
+
 2.view all vendors
+
 3.create new tenders
+
 4.view all tenders
+
 5.view all bids of a tender
+
 6.and assign a tender to a vendor.
 
+
 Vendor: 
+
 1.Can SignUp With New Account
+
 2.Can login
+
 3.update account details
+
 4.view all current tenders
+
 5.place bids
+
 6.view own bid history
+
 7.search for a tender by tender id.
+
 
 All above parts are working properly
 
 Installation:
 
 1: Clone the repository or download the zip file.
+
 2: Import the project into a Java IDE.
+
 3: Setup a database (MySQL) and configure the database connection in the persistence.xml file located in the src/main/resources/META-INF folder.
+
 
 Technologies Used:
 
-1: Java
-2: Hibernate ORM Framework
-3: MySQL Database
+1: Java<br>
+2: Hibernate ORM Framework<br>
+3: MySQL Database<br>
 
 
 Configuration:
