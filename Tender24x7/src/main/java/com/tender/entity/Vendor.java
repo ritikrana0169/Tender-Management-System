@@ -62,15 +62,25 @@ public void setCompanyCeoName(String companyCeoName) {
 
 @Override
 public String toString() {
-	String str="-----------------xxxxxxxxxxxxxxxxxx----------------------\n| Vendor [ vendorId-> " + vendorId + ", vendorCompanyName-> "
-+ vendorCompanyName + ", contactMailId-> "
-			+ contactMailId + ",\n| CompanyCeoName-> " + CompanyCeoName + ", userName-> " + userName + ", totalTenderTakeOver-> "
-			+ totalTenderTakeOver + ",\n| experienceInYears-> " + experienceInYears + ",\n| Assigned TenderList=";
+	String str="|⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃【V】【E】【N】【D】【O】【R】 【D】【E】【T】【A】【I】【L】【S】⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|\n|\n|     VENDOR ID ➤ " + vendorId + ", COMPANY NAME ➤ "
++ vendorCompanyName + ", CONTACT MAIL ➤ "
+			+ contactMailId + ",\n|     CEO NAME ➤ " + CompanyCeoName + ", USER NAME ➤ " + userName + ", TOTAL TENDERS TAKEOVER ➤ "
+			+ totalTenderTakeOver + ",\n|     EXPERIENCE ➤ " + experienceInYears + ",\n|\n|    ⚝⚝ ＡＳＳＩＧＮＥＤ ＴＥＮＤＥＲ ＬＩＳＴ ⚝⚝\n|\n";
 for(int i=0;i<tenderList.size();i++) {
-	str=str+"\n[Tender Id-> "+tenderList.get(i).getTenderId()+" Tender Name-> "+
-tenderList.get(i).getTenderName()+"\n| Tender TakeOver Price-> "+tenderList.get(i).getTakeOverBid()+"]\n| "
-		+ "\"---------------------------------------------------------------------\"";
+	str=str+"|     TENDER ID ➤ "+tenderList.get(i).getTenderId()+"\n|     TENDER NAME ➤ "+
+tenderList.get(i).getTenderName()+"\n|     TENDER TAKEOVER PRICE ➤ "+tenderList.get(i).getTakeOverBid()+"\n"
+		     + "|⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|";
 }
+	
+	return str;
+}
+
+public String toStringVendor() {
+	String str="|⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃【V】【E】【N】【D】【O】【R】 【D】【E】【T】【A】【I】【L】【S】⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|\n|\n|     VENDOR ID ➤ " + vendorId + ", COMPANY NAME ➤ "
++ vendorCompanyName + ", CONTACT MAIL ➤ "
+			+ contactMailId + ",\n|     CEO NAME ➤ " + CompanyCeoName + ", USER NAME ➤ " + userName + ", TOTAL TENDERS TAKEOVER ➤ "
+			+ totalTenderTakeOver + ",\n|     EXPERIENCE ➤ " + experienceInYears + "\n"
+		    + "|⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|";
 	
 	return str;
 }

@@ -11,6 +11,7 @@ import com.tender.daoImpl.TenderDaoImpl;
 import com.tender.daoImpl.VendorDaoImpl;
 import com.tender.entity.Tender;
 import com.tender.entity.Vendor;
+import com.tender.exception.NoRecordFoundException;
 import com.tender.exception.SomeThingWentWrongException;
 
 public class TenderService {
@@ -58,29 +59,40 @@ public class TenderService {
 		
 		return sc.nextInt();
 	}
-	public void printTenderBidHistory(List<Vendor> tenderBidHistory,int id) {
+	public void printTenderBidHistory(List<Vendor> tenderBidHistory,int id) throws NoRecordFoundException {
 		
 		for(int i=0;i<tenderBidHistory.size();i++) {
-			System.out.println("-------------------------------");
-			System.out.println("Vendor ID:"+tenderBidHistory.get(i).getVendorId());
-			System.out.println("Vendor Name: "+tenderBidHistory.get(i).getVendorCompanyName());
+			System.out.println("|⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃Ｂ Ｉ Ｄ⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|");
+			System.out.println("| VENDOR ID ➤ "+tenderBidHistory.get(i).getVendorId());
+			System.out.println("| VENDOR NAME ➤ "+tenderBidHistory.get(i).getVendorCompanyName());
 			Integer price=bidDaoImpl.getBidPriceByTenderIdAndVendorId(id, tenderBidHistory.get(i).getVendorId());
-			System.out.println("Vendor Bid Price: "+price);
+			System.out.println("| VENDOR BID PRICE ➤ "+price);
+			System.out.println("|⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|");
 		}
 	}
-	public void assignVendor(Scanner sc) throws SomeThingWentWrongException{
+	public void assignVendor(Scanner sc) throws SomeThingWentWrongException, NoRecordFoundException{
 		System.out.println("Enter Tender Id For Which You Want To Assign Vendor");
 		int tenderId=sc.nextInt();
 		System.out.println("Enter Vendor Id");
 		int vendorId=sc.nextInt();
-		Tender assignTender=tenderDaoImpl.getTenderByTenderId(tenderId);
-		Vendor assignVendor=vendorDaoImpl.getVendorById(vendorId);
-		int price=bidDaoImpl.getBidPriceByTenderIdAndVendorId(tenderId, vendorId);
-		
-		assignTender.setVendor(assignVendor);
-		assignTender.setTakeOverBid(price);
-		tenderDaoImpl.saveTender(assignTender);
-		System.out.println("Tender Assigned To Vendor Id-> "+vendorId);
+		try {
+			Tender assignTender=tenderDaoImpl.getTenderByTenderId(tenderId);
+			Vendor assignVendor=vendorDaoImpl.getVendorById(vendorId);
+			
+			int price=bidDaoImpl.getBidPriceByTenderIdAndVendorId(tenderId, vendorId);
+			
+			assignTender.setVendor(assignVendor);
+			assignTender.setTakeOverBid(price);
+			tenderDaoImpl.saveTender(assignTender);
+			System.out.println("Tender Assigned To Vendor Id-> "+vendorId);
+		} catch (NoRecordFoundException e) {
+			// TODO: handle exception
+			System.out.println(e);
+			System.out.println("Try Again");
+		}
+		catch(Exception e1) {
+			System.out.println(e1);
+		}
 		
 		
 	}

@@ -7,23 +7,28 @@ import com.tender.daoImpl.BidDaoImpl;
 import com.tender.daoImpl.VendorDaoImpl;
 import com.tender.entity.Tender;
 import com.tender.entity.Vendor;
+import com.tender.exception.NoRecordFoundException;
 
 public class VendorService {
 	VendorDaoImpl vendorDaoImpl=new VendorDaoImpl();
 	
 	public void getDataAndUpdateVendor(Scanner sc,int vendorId) {
 		Vendor vendor=vendorDaoImpl.getVendorById(vendorId);
-		System.out.println(vendor.toString());
+		System.out.println(vendor.toStringVendor());
 		String oldPassword=vendor.getUserPasword();
 		int i=0;
 		while(i!=7) {
-			System.out.println("1: Update User-Name");
-			System.out.println("2: Update User-Password");
-			System.out.println("3: Update Total Tender TakeOver");
-			System.out.println("4: Update Total Experience");
-			System.out.println("5: Update Company Ceo Name");
-			System.out.println("6: Update Contact Email ID");
-			System.out.println("7: Save/Exit");
+
+			System.out.println("⁃⁃⁃⁃⁃⁃【U】【P】【D】【A】【T】【E】 【P】【R】【O】【F】【I】【L】【E】⁃⁃⁃⁃⁃⁃|");
+		    System.out.println("| Options:                                       |");
+		    System.out.println("|        1: Update User-Name                     |");
+		    System.out.println("|        2: Update User-Password                 |");
+		    System.out.println("|        3: Update Total Tender TakeOver         |");
+		    System.out.println("|        4: Update Total Experience              |");
+			System.out.println("|        5: Update Company Ceo Name              |");
+			System.out.println("|        6: Update Contact Email ID              |");
+			System.out.println("|        7: Save/Exit                            |");
+		    System.out.println("|⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|");
 			
 			i=sc.nextInt();
 			switch(i) {
@@ -92,7 +97,7 @@ public Vendor vendorSignUp(Scanner sc) {
 public void printAllVendors(List<Vendor> vendorList) {
 	vendorList.forEach(s->System.out.println(s.toString()));
 }
-public void viewBidHistory(int id) {
+public void viewBidHistory(int id) throws NoRecordFoundException {
 
 	Vendor vendor=vendorDaoImpl.getVendorById(id);
 	BidDaoImpl bidDaoImpl=new BidDaoImpl(); 
@@ -100,11 +105,16 @@ public void viewBidHistory(int id) {
 	for(int i=0;i<vendor.getBidForList().size();i++) {
 		Tender td=vendor.getBidForList().get(i);
 		Integer price=bidDaoImpl.getBidPriceByTenderIdAndVendorId(td.getTenderId(),id);
-		System.out.println("Tender Id-> "+td.getTenderId()+" Tender Name-> "+td.getTenderName()+" Your Bid Price-> "+price);
+		System.out.println("|⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|");
+		System.out.println("|    TENDER ID ➤ "+td.getTenderId()+"\n"
+				         + "|    TENDER NAME ➤ "+td.getTenderName()+"\n"
+				         + "|    YOUR BID PRICE ➤ "+price);
 		if(td.getVendor().getVendorCompanyName().equals("open")) {
-			System.out.println("Tender Status-> Still Open");
+	    System.out.println("|    TENDER STATUS ➤ Still Open");
+	    System.out.println("|⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|");
 		}else {
-			System.out.println("Tender Status Assigned To-> "+td.getVendor().getVendorCompanyName());
+		System.out.println("|    TENDER ASSIGNED TO ➤ "+td.getVendor().getVendorCompanyName());
+		System.out.println("|⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|");
 		}
 	}
 	

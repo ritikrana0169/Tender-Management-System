@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.tender.daoImpl.VendorDaoImpl;
 import com.tender.entity.Vendor;
+import com.tender.exception.NoRecordFoundException;
 import com.tender.service.VendorService;
 import com.tender.utils.DbUtils.GetConnection;
 
@@ -70,14 +71,26 @@ public Vendor vendorLogin(Scanner sc) {
 }
 
 
-public void signUpOrLoginMenu(Scanner sc) {
+public void signUpOrLoginMenu(Scanner sc) throws NoRecordFoundException {
 	VendorService vendorService=new VendorService();
 	VendorDaoImpl vendorDaoImpl =new VendorDaoImpl();
 	int i=0;
 	while(i!=7) {
-		System.out.println("1: SignUp Vendor");
-		System.out.println("2: Login Vendor");
-		System.out.println("7: Exit");
+		
+		System.out.println("\r\n"
+				+ "█░█ █▀▀ █▄░█ █▀▄ █▀█ █▀█   █▀▄▀█ █▀▀ █▄░█ █░█\r\n"
+				+ "▀▄▀ ██▄ █░▀█ █▄▀ █▄█ █▀▄   █░▀░█ ██▄ █░▀█ █▄█");
+		
+	
+	    System.out.println("|  Options:                               |");
+	    System.out.println("|        1: SignUp Vendor                 |");
+	    System.out.println("|        2: Login Vendor                  |");
+	    System.out.println("|        7. Exit                          |");
+	    System.out.println("|⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|");
+//		
+//		System.out.println("1: SignUp Vendor");
+//		System.out.println("2: Login Vendor");
+//		System.out.println("7: Exit");
 		i=sc.nextInt();
 		switch(i) {
 		case 1:

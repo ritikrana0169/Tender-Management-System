@@ -59,6 +59,7 @@ public Tender() {
 
 
 public List<Vendor> getBidByList() {
+	
 	return bidByList;
 }
 
@@ -124,10 +125,14 @@ public void setTenderName(String tenderName) {
 
 @Override
 public String toString() {
-	return"-------------------------------------------------------------------"+"\nTenderId : " + tenderId + 
-			"\nTenderName : " + tenderName + "\nTakeOverBid : " + takeOverBid
-			+ "\nTenderClosingDate : " + tenderClosingDate + "\nVendor : " + vendor.getVendorCompanyName()
-			+"\nMinimum Expected Budget: "+tenderExpectedPrice+ "\n----------";
+	return"|⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃【T】【E】【N】【D】【E】【R】⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|"+
+        "\n| TENDER ID ➤ " + tenderId + 
+	    "\n| TENDER NAME ➤ " + tenderName + "\n"
+	    + "| TAKEOVER BID ➤ " + takeOverBid
+	  + "\n| TENDER CLOSING DATE ➤ " + tenderClosingDate + 
+	    "\n| VENDOR ➤ " + vendor.getVendorCompanyName()
+	   +"\n| MINIMUM EXPECTED BUDGET ➤ "+tenderExpectedPrice+ 
+	    "\n|⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|";
 }
 
 

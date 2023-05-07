@@ -9,6 +9,7 @@ import com.tender.daoImpl.VendorDaoImpl;
 import com.tender.entity.Admin;
 import com.tender.entity.Tender;
 import com.tender.entity.Vendor;
+import com.tender.exception.NoRecordFoundException;
 import com.tender.exception.SomeThingWentWrongException;
 import com.tender.service.TenderService;
 import com.tender.service.VendorService;
@@ -21,16 +22,21 @@ public class AdminController {
 	VendorService vendorService=new VendorService();
 	TenderDaoImpl tenderDaoImpl=new TenderDaoImpl();
 	VendorDaoImpl vendorDaoImpl=new VendorDaoImpl();
-	public void administratorMethod(Scanner sc) throws InterruptedException {
-		System.out.println("\n\n-------Administrator Pannel--------------\n");
+	public void administratorMethod(Scanner sc) throws InterruptedException, NoRecordFoundException {
 		int i=0;
 		while(i!=7) {
-			System.out.println("1: View all the vendors");
-			System.out.println("2: Create new tenders");
-			System.out.println("3: View All the Tenders");
-			System.out.println("4: View All the Bids of a tender");
-			System.out.println("5: Assign tender to a vendor");
-			System.out.println("7: Logout");
+			
+			System.out.println("\n"
+					+ "▄▀█ █▀▄ █▀▄▀█ █ █▄░█\r\n"
+					+ "█▀█ █▄▀ █░▀░█ █ █░▀█⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|");
+		    System.out.println("| Options:                                       |");
+		    System.out.println("|        1: View all the vendors                 |");
+		    System.out.println("|        2: Create new tenders                   |");
+		    System.out.println("|        3: View All the Tenders                 |");
+		    System.out.println("|        4: View All the Bids of a tender        |");
+			System.out.println("|        5: Assign tender to a vendor            |");
+			System.out.println("|        7: Logout                               |");
+		    System.out.println("|⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃|");
 			
 			i=sc.nextInt();
 			switch(i) {
