@@ -39,6 +39,11 @@ public class VendorDaoImpl implements VendorDao {
 		EntityManager em=emf.createEntityManager();
 		Query query=em.createQuery("Select v from Vendor v");
 		List<Vendor> vendorList=query.getResultList();
+		for(int i=0;i<vendorList.size();i++) {
+			if(vendorList.get(i).getVendorId()==-1) {
+				vendorList.remove(i);
+			}
+		}
 		return vendorList;
 	}
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tender.dao.BidDao;
 import com.tender.entity.Bid;
+import com.tender.exception.NoRecordFoundException;
 import com.tender.utils.DbUtils.GetConnection;
 
 import jakarta.persistence.EntityManager;
@@ -21,7 +22,7 @@ public class BidDaoImpl implements BidDao{
 		em.getTransaction().commit();
 		em.close();
 	}
-public List<Integer> getTenderIdListForVendor(int id){
+public List<Integer> getTenderIdListForVendor(int id) throws NoRecordFoundException{
 	EntityManagerFactory emf=GetConnection.getEmf();
 	EntityManager em=emf.createEntityManager();
 	Query query=em.createQuery("Select t.forTenderId from Bid t where t.byVendorId=:vendorID");
@@ -29,13 +30,20 @@ public List<Integer> getTenderIdListForVendor(int id){
 	List<Integer> tenderIdList=query.getResultList();
 	return tenderIdList;
 }
-public Integer getBidPriceByTenderIdAndVendorId(int tdId,int vdId) {
-	EntityManagerFactory emf=GetConnection.getEmf();
-	EntityManager em=emf.createEntityManager();
-	Query query=em.createQuery("Select t.price from Bid t where t.byVendorId=:vdID AND t.forTenderId=:tdID");
-	query.setParameter("vdID", vdId);
-	query.setParameter("tdID", tdId);
-	Integer price=(Integer) query.getSingleResult();
-	return price;
+public Integer getBidPriceByTenderIdAndVendorId(int tdId,int vdId)  throws NoRecordFoundException{
+	
+	try {
+		EntityManagerFactory emf=GetConnection.getEmf();
+		EntityManager em=emf.createEntityManager();
+		Query query=em.createQuery("Select t.price from Bid t where t.byVendorId=:vdID AND t.forTenderId=:tdID");
+		query.setParameter("vdID", vdId);
+		query.setParameter("tdID", tdId);
+		Integer price=(Integer) query.getSingleResult();
+		return price;
+	} catch (Exception e) {
+		// TODO: handle exception
+		throw new  NoRecordFoundException("No Record Found");
+	}
+	
 }
 }

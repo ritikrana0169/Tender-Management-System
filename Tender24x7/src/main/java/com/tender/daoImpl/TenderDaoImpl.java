@@ -7,6 +7,7 @@ import java.util.Scanner;
 import com.tender.dao.TenderDao;
 import com.tender.entity.Tender;
 import com.tender.entity.Vendor;
+import com.tender.exception.NoRecordFoundException;
 import com.tender.utils.DbUtils.GetConnection;
 
 import jakarta.persistence.EntityManager;
@@ -67,7 +68,7 @@ public class TenderDaoImpl implements TenderDao{
 		return tender;
 	}
 	@Override
-	public List<Tender> biddingForTender(Vendor vendor,Scanner sc) {
+	public List<Tender> biddingForTender(Vendor vendor,Scanner sc) throws NoRecordFoundException {
 		EntityManagerFactory emf=GetConnection.getEmf();
 		EntityManager em=emf.createEntityManager();
 		Query query=em.createQuery("Select t.tenderId from Tender t where t.vendor.vendorId=-1");
