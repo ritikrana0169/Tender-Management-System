@@ -11,6 +11,11 @@ Project Logo
 
 ![tender](https://user-images.githubusercontent.com/99540875/235904254-ead3cbe0-7cd4-4d6e-b077-587728858bf6.jpg)
 
+Er Diagram
+
+
+![schemafortender](https://github.com/ritikrana0169/sore-rate-9569/assets/99540875/d47a36a7-8ba2-4f26-92de-c45794f9c3a3)
+
 
 The system has two types of users:
 
