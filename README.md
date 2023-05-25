@@ -41,7 +41,7 @@ Installation:<br>
 3: Setup a database (MySQL) and configure the database connection in the persistence.xml file located in the src/main/resources/META-INF folder.<br>
 <br>
 Technologies Used:<br>
-1: Java<br>
+1: Core-Java<br>
 2: Hibernate ORM Framework<br>
 3: MySQL Database<br>
 
