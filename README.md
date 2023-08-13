@@ -2,7 +2,7 @@
 Project Name
 
 Tender Management System.
- 
+  
 About Project 
 
 This Tender Management System is a web application designed for companies to float tenders and vendors to bid on them. The system maintains an empaneled list of vendors who can bid for tenders. The company can view all the vendors and create new tenders. Vendors can view all current tenders, place bids, and view their bid history.
